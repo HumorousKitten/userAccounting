@@ -4,6 +4,8 @@ import { AuthPage } from '@/pages/authPage/ui/AuthPage'
 
 import { ProtectedRoute } from '@/pages/protectedRoute/ProtectedRoute'
 
+import { MainLayout } from '@/app/mainLayout/MainLayout'
+
 export const router = createBrowserRouter([
 	{
 		path: '/login',
@@ -14,8 +16,13 @@ export const router = createBrowserRouter([
 		element: <ProtectedRoute />,
 		children: [
 			{
-				path: '/',
-				element: <div>Hello world!</div>,
+				element: <MainLayout />,
+				children: [
+					{
+						path: '/',
+						element: <div>all users</div>
+					}
+				]
 			},
 		],
 	},
