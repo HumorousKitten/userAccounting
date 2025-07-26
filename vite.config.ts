@@ -13,7 +13,22 @@ export default defineConfig({
 			'@features': path.resolve(__dirname, './src/features'),
 			'@widgets': path.resolve(__dirname, './src/widgets'),
 			'@pages': path.resolve(__dirname, './src/pages'),
+			'@app': path.resolve(__dirname, './src/app'),
 		},
 	},
+
+	server: {
+		allowedHosts: ['localhost'],
+		port: 5173,
+		strictPort: true,
+		proxy: {
+			'/api': {
+				target: 'http://localhost:4000',
+				changeOrigin: true,
+				secure: false,
+			},
+		},
+	},
+
 	plugins: [react()],
 })
