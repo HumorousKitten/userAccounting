@@ -6,6 +6,8 @@ import { ProtectedRoute } from '@/pages/protectedRoute/ProtectedRoute'
 
 import { MainLayout } from '@/app/mainLayout/MainLayout'
 
+import { UsersPage } from '@/pages/usersPage/UsersPage'
+
 export const router = createBrowserRouter([
 	{
 		path: '/login',
@@ -20,7 +22,7 @@ export const router = createBrowserRouter([
 				children: [
 					{
 						path: '/',
-						element: <div>all users</div>
+						element: <UsersPage />
 					}
 				]
 			},
