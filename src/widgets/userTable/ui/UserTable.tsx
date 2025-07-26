@@ -9,6 +9,11 @@ import React from 'react'
 
 import { getUsers } from '../api/getUsers'
 
+import { DeleteUser } from '@/features/deleteUser/ui/DeleteUser'
+import { EditUser } from '@/features/editUser/ui/EditUser'
+import { Stack } from '@mui/material'
+
+
 interface IUsers {
 	id: string
 	name: string
@@ -50,7 +55,12 @@ export function UserTable() {
 						? users.map(user => {
 								return (
 									<TableRow key={user.id}>
-										<TableCell>Действие</TableCell>
+										<TableCell>
+											<Stack direction={'row'}>
+												<EditUser />
+												<DeleteUser />
+											</Stack>
+										</TableCell>
 										<TableCell>{user.id}</TableCell>
 										<TableCell>{user.email}</TableCell>
 										<TableCell>{user.name}</TableCell>
