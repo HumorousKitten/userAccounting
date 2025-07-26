@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { Box, Button, TextField, Typography } from '@mui/material'
 
-import { ControlledField } from '@/shared/ui/controlledFormField/CntrolledField'
+import { ControlledField } from '@/shared/ui/controlledFormField/ControlledField'
 
 import { auth } from '../api/auth.service'
 

@@ -5,7 +5,7 @@ import type { Control, FieldValues, Path } from 'react-hook-form';
 interface IControlledField<T extends FieldValues> {
 	name: Path<T>,
 	control: Control<T>,
-	rules: {required: string | boolean}
+	rules?: {required: string | boolean}
 	renderFunc: Parameters<typeof Controller<T>>[0]['render']
 }
 
