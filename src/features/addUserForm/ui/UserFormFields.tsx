@@ -30,7 +30,13 @@ export function UserFormFields({ control, errors }: IUserFormFields) {
 					<ControlledField<IFormInput>
 						name='name'
 						control={control}
-						rules={{ required: 'Поле не должно быть пустым' }}
+						rules={{
+							required: 'Поле не должно быть пустым',
+							maxLength: {
+								value: 64,
+								message: 'Имя не должно превышать 64 символа',
+							},
+						}}
 						renderFunc={({ field }) => (
 							<TextField
 								id='outlined-firstName'
@@ -52,7 +58,13 @@ export function UserFormFields({ control, errors }: IUserFormFields) {
 					<ControlledField<IFormInput>
 						name='surName'
 						control={control}
-						rules={{ required: 'Поле не должно быть пустым' }}
+						rules={{
+							required: 'Поле не должно быть пустым',
+							maxLength: {
+								value: 64,
+								message: 'Имя не должно превышать 64 символа',
+							},
+						}}
 						renderFunc={({ field }) => (
 							<TextField
 								id='outlined-lastName'
@@ -73,7 +85,13 @@ export function UserFormFields({ control, errors }: IUserFormFields) {
 			<ControlledField<IFormInput>
 				name='email'
 				control={control}
-				rules={{ required: 'Поле не должно быть пустым' }}
+				rules={{
+					required: 'Email обязателен',
+					pattern: {
+						value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/,
+						message: 'Введите корректный email',
+					},
+				}}
 				renderFunc={({ field }) => (
 					<TextField
 						id='outlined-email'
