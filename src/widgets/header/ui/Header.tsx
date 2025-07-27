@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom'
 
 export function Header() {
 	const location = useLocation()
-	console.log(location.pathname.includes('create'))
 
 	return (
 		<AppBar position='static' sx={{backgroundColor: '#ffffff', color: '#000000'}}>

@@ -38,14 +38,17 @@ export function AddUserForm() {
 
 		const { passwordConfirm, ...newData } = data
 
+		const {password, ...withoutPassword} = newData
+
 		const fetchData = await createUser({
 			...newData,
 			fullName: `${newData.name} ${newData.surName}`,
 		})
 
+
 		if (fetchData?.status === 201){
 			addUser({
-				...newData,
+				...withoutPassword,
 				fullName: `${newData.name} ${newData.surName}`,
 				id: fetchData.data.id,
 			})
