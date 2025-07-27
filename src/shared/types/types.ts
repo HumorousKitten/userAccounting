@@ -4,4 +4,6 @@ export interface IUsers {
 	surName: string
 	fullName: string
 	email: string
+	userAgreement: boolean
+	employment: string
 }

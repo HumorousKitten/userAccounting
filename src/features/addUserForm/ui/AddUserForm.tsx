@@ -12,6 +12,8 @@ import { useAddUserForm } from '../model/hooks/useAddUserForm'
 
 import { closeIconStyle, formStyle, submitBtnStyle } from '../constants/styles'
 
+import { useUserStore } from '@/entities/user/store/useUserStore'
+
 export function AddUserForm() {
 	const {
 		control,
@@ -19,6 +21,8 @@ export function AddUserForm() {
 		formState: { errors },
 		setError,
 	} = useAddUserForm()
+
+	const addUser = useUserStore(state => state.addUser)
 
 	const onSubmit: SubmitHandler<IFormInput> = async data => {
 		if (data.password !== data.passwordConfirm) {
@@ -37,6 +41,12 @@ export function AddUserForm() {
 			fullName: `${newData.name} ${newData.surName}`,
 		})
 
+		if (fetchData?.status === 201)
+			addUser({
+				...newData,
+				fullName: `${newData.name} ${newData.surName}`,
+				id: fetchData.data.id,
+			})
 	}
 
 	return (

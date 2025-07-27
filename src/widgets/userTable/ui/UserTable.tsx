@@ -13,16 +13,15 @@ import { DeleteUser } from '@/features/deleteUser/ui/DeleteUser'
 import { EditUser } from '@/features/editUser/ui/EditUser'
 import { Stack } from '@mui/material'
 
-
-import type { IUsers } from '@/shared/types'
-
+import { useUserStore } from '@/entities/user/store/useUserStore'
 
 export function UserTable() {
-	const [users, setUsers] = React.useState<IUsers[]>([])
-
+	const {users, setUsers} = useUserStore()
 	
 	React.useEffect(() => {
 		async function fetchData() {
+			if(users.length) return
+
 			const data = await getUsers()
 
 			if (!data) return

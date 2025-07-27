@@ -7,10 +7,11 @@ import type { IUsers } from '@/shared/types'
 interface IUserStore {
 	users: IUsers[]
 	addUser: (user: IUsers) => void
+	setUsers: (users: IUsers[]) => void
 }
 
 
-const useUserStore = create<IUserStore>()(
+export const useUserStore = create<IUserStore>()(
 	persist(
 
 		immer((set, get) => ({
@@ -18,7 +19,11 @@ const useUserStore = create<IUserStore>()(
 
 			addUser: (user) => set(state => {
 				state.users.push(user)
-			}) 	
+			}),
+			
+			setUsers: (users) => set(state => {
+				state.users = users
+			})
 
 		})),
 
