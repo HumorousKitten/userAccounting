@@ -56,7 +56,7 @@ export function UserTable() {
 										<TableCell>
 											<Stack direction={'row'}>
 												<EditUser iconColor = 'black' user_id={user.id}/>
-												<DeleteUser iconColor = '#FF7F7F'/>
+												{user.id !== '1' ? <DeleteUser iconColor = '#FF7F7F' user_id={user.id}/> : null}
 											</Stack>
 										</TableCell>
 										<TableCell>{user.id}</TableCell>

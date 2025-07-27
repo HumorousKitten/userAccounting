@@ -52,7 +52,6 @@ export function EditUserForm() {
 			userAgreement: data.userAgreement,
 		}
 
-		console.log(data)
 
 		const responce = await updateUserData(id, newData)
 
