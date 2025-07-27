@@ -1,10 +1,14 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton } from '@mui/material';
 
-export function DeleteUser() {
+interface IDeleteUser {
+	iconColor?: string
+}
+
+export function DeleteUser({iconColor = 'currentColor'}: IDeleteUser) {
 	return (
 		<IconButton>
-			<DeleteIcon />
+			<DeleteIcon sx={{color: iconColor}}/>
 		</IconButton>
 	);
 }
