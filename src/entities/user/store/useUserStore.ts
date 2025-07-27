@@ -8,6 +8,7 @@ interface IUserStore {
 	users: IUsers[]
 	addUser: (user: IUsers) => void
 	setUsers: (users: IUsers[]) => void
+	updateUser: (user: IUsers) => void
 }
 
 
@@ -21,10 +22,13 @@ export const useUserStore = create<IUserStore>()(
 				state.users.push(user)
 			}),
 			
-			setUsers: (users) => set(state => {
+			setUsers: (users) => set((state) => {
 				state.users = users
-			})
+			}),
 
+			updateUser: (user) => set(state => {
+				state.users = state.users.map(item => item.id === user.id ? user : item)
+			})
 		})),
 
 		{
