@@ -24,7 +24,7 @@ export function UserTable() {
 			if(users.length) return
 
 			const data = await getUsers()
-
+	
 			if (!data) return
 
 			setUsers(data.data)
