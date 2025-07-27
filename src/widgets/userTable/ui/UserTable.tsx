@@ -42,6 +42,8 @@ export function UserTable() {
 						<TableCell>Почта</TableCell>
 						<TableCell>Имя</TableCell>
 						<TableCell>Фамилия</TableCell>
+						<TableCell>Занятость</TableCell>
+						<TableCell>Соглашение</TableCell>
 					</TableRow>
 				</TableHead>
 
@@ -60,6 +62,8 @@ export function UserTable() {
 										<TableCell>{user.email}</TableCell>
 										<TableCell>{user.name}</TableCell>
 										<TableCell>{user.surName}</TableCell>
+										<TableCell>{user.employment ? user.employment : '-'}</TableCell>
+										<TableCell>{user.userAgreement ? 'Есть' : 'Нет'}</TableCell>
 									</TableRow>
 								)
 						  })
