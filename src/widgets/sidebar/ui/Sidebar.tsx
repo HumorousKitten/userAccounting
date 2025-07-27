@@ -35,18 +35,16 @@ export function Sidebar() {
 				</IconButton>
 			</Box>
 
-			<Box display='flex' justifyContent={'center'} alignItems={'center'}> 
+			<Box display='flex'  alignItems={open ? 'flex-start' : 'center'} flexDirection={'column'} marginInline={'auto'} mt={3}> 
         <UsersNavigate>
           {open ? <Typography ml={1}>Пользователи</Typography> : null}
         </UsersNavigate>
-			</Box>
-			
-			<Box display='flex' justifyContent={'center'} alignItems={'center'}> 
+
         <AddUserNavigate>
           {open ? <Typography ml={1}>Добавить пользователя</Typography> : null}
         </AddUserNavigate>
 			</Box>
-
+			
 		</Drawer>
 	)
 }
