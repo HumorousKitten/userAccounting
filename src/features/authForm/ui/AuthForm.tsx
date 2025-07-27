@@ -20,7 +20,6 @@ import {
 interface IFormInput {
 	email: string
 	password: string
-	passwordConfirm: string
 }
 
 export function AuthForm() {
@@ -33,27 +32,12 @@ export function AuthForm() {
 		defaultValues: {
 			email: '',
 			password: '',
-			passwordConfirm: '',
 		},
 	})
 
 	const navigate = useNavigate()
 
 	const onSubmit: SubmitHandler<IFormInput> = async data => {
-		if (data.password !== data.passwordConfirm) {
-			setError('password', {
-				type: 'password',
-				message: 'Пароли не совпадают',
-			})
-
-			setError('passwordConfirm', {
-				type: 'passwordConfirm',
-				message: 'Пароли не совпадают',
-			})
-
-			return
-		}
-
 		const authData = await auth(data.email, data.password)
 		if (authData.data.message === 'Login successful') 
 			navigate('/')
@@ -102,26 +86,6 @@ export function AuthForm() {
 			{errors.password ? (
 				<Typography sx={errorStyle.message} component='p'>
 					{errors.password.message}
-				</Typography>
-			) : null}
-
-			<ControlledField<IFormInput>
-				name='passwordConfirm'
-				control={control}
-				rules={{ required: 'Поле не должно быть пустым' }}
-				renderFunc={({ field }) => (
-					<TextField
-						id='outlined-passwordConfirm'
-						label='Password confirm *'
-						variant='outlined'
-						type='password'
-						{...field}
-					/>
-				)}
-			/>
-			{errors.passwordConfirm ? (
-				<Typography sx={errorStyle.message} component='p'>
-					{errors.passwordConfirm.message}
 				</Typography>
 			) : null}
 
