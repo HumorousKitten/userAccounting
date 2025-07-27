@@ -2,7 +2,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { Box, Button, IconButton, Stack, Typography } from '@mui/material'
 import { UserFormFields } from './userFormFields'
 
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import type { SubmitHandler } from 'react-hook-form'
 import type { IFormInput } from '../model/types'
@@ -23,6 +23,8 @@ export function AddUserForm() {
 	} = useAddUserForm()
 
 	const addUser = useUserStore(state => state.addUser)
+	const navigate = useNavigate()
+
 
 	const onSubmit: SubmitHandler<IFormInput> = async data => {
 		if (data.password !== data.passwordConfirm) {
@@ -41,12 +43,15 @@ export function AddUserForm() {
 			fullName: `${newData.name} ${newData.surName}`,
 		})
 
-		if (fetchData?.status === 201)
+		if (fetchData?.status === 201){
 			addUser({
 				...newData,
 				fullName: `${newData.name} ${newData.surName}`,
 				id: fetchData.data.id,
 			})
+			
+			navigate('/')
+		}
 	}
 
 	return (
