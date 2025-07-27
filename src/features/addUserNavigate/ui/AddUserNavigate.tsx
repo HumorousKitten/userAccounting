@@ -11,8 +11,8 @@ interface IAddUser  extends ButtonProps{}
 
 export function AddUserNavigate({ children }: IAddUser) {
 	return (
-		<Button component={RouterLink} to={'/user/create'} startIcon={<PersonAdd />}
-			sx={{textDecoration: 'none', color: 'currentcolor', }}
+		<Button component={RouterLink} to={'/user/create'} startIcon={<PersonAdd sx={{width: 24, height: 24}}/>}
+			sx={{textDecoration: 'none', color: 'currentcolor'}}
 		>
 			{children}
 		</Button>
