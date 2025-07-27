@@ -1,20 +1,19 @@
-import type { ReactNode } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 
-import GroupIcon from '@mui/icons-material/Group';
-import { IconButton } from '@mui/material'
+import GroupIcon from '@mui/icons-material/Group'
+import { Button, type ButtonProps } from '@mui/material'
 
+interface IUsersNavigate extends ButtonProps {}
 
-
-interface IUsersNavigate {
-	children: ReactNode
-}
-
-export function UsersNavigate({children}: IUsersNavigate) {
+export function UsersNavigate({ children }: IUsersNavigate) {
 	return (
-		<IconButton>
-			<GroupIcon />
+		<Button
+			startIcon={<GroupIcon sx={{width: 24, height: 24}}/>}
+			component={RouterLink}
+			to={'/'}
+			sx={{ textDecoration: 'none', color: 'currentcolor'}}
+		>
 			{children}
-		</IconButton>
+		</Button>
 	)
 }
-
