@@ -82,22 +82,30 @@ export function UserFormFields({ control, errors }: IUserFormFields) {
 				</Stack>
 			</Stack>
 
+			<ControlledField<IFormInput >
+				name='fullName'
+				control={control}
+				renderFunc={({ field }) => (
+					<TextField
+						id='outlined-fullName'
+						label='fullName *'
+						variant='outlined'
+						disabled
+						{...field}
+					/>
+				)}
+			/>
+
 			<ControlledField<IFormInput>
 				name='email'
 				control={control}
-				rules={{
-					required: 'Email обязателен',
-					pattern: {
-						value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/,
-						message: 'Введите корректный email',
-					},
-				}}
 				renderFunc={({ field }) => (
 					<TextField
 						id='outlined-email'
 						label='Почта *'
 						variant='outlined'
 						type={'email'}
+						disabled
 						{...field}
 					/>
 				)}
@@ -105,46 +113,6 @@ export function UserFormFields({ control, errors }: IUserFormFields) {
 			{errors.email ? (
 				<Typography component='p' sx={errorStyle.message}>
 					{errors.email.message}
-				</Typography>
-			) : null}
-
-			<ControlledField<IFormInput>
-				name='password'
-				control={control}
-				rules={{ required: 'Поле не должно быть пустым' }}
-				renderFunc={({ field }) => (
-					<TextField
-						id='outlined-password'
-						label='Пароль *'
-						variant='outlined'
-						type={'password'}
-						{...field}
-					/>
-				)}
-			/>
-			{errors.password ? (
-				<Typography component='p' sx={errorStyle.message}>
-					{errors.password.message}
-				</Typography>
-			) : null}
-
-			<ControlledField<IFormInput>
-				name='passwordConfirm'
-				control={control}
-				rules={{ required: 'Поле не должно быть пустым' }}
-				renderFunc={({ field }) => (
-					<TextField
-						id='outlined-passwordConfirm'
-						label='Подтверждение пароля *'
-						variant='outlined'
-						type={'password'}
-						{...field}
-					/>
-				)}
-			/>
-			{errors.passwordConfirm ? (
-				<Typography component='p' sx={errorStyle.message}>
-					{errors.passwordConfirm.message}
 				</Typography>
 			) : null}
 

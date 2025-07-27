@@ -13,30 +13,15 @@ import { DeleteUser } from '@/features/deleteUser/ui/DeleteUser'
 import { EditUser } from '@/features/editUser/ui/EditUser'
 import { Stack } from '@mui/material'
 
-//ToDo: сделать форму добавления пользователя (без логики)
-// сделать форму редактирования пользователя (без логики)
-// добавить store пользователей в  entities
-// добавить логику в форму добавления пользователя
-// добавить логику в форму редактирования пользователя
-
-
-interface IUsers {
-	id: string
-	name: string
-	surName: string
-	fullName: string
-	email: string
-}
+import { useUserStore } from '@/entities/user/store/useUserStore'
 
 export function UserTable() {
-	const [users, setUsers] = React.useState<IUsers[]>([])
-
-	//запрашивать пользователей из  store
-	//получать пользователей из базы данных только в первый раз при монтировании компонента, следовательно и заполнять state полностью в первый раз
-	// след разы будет ререндер от изменения самого стора, когда мы будем редактировать, добавлять или удалять пользователя
+	const { users, setUsers } = useUserStore()
 
 	React.useEffect(() => {
 		async function fetchData() {
+			if (users.length) return
+
 			const data = await getUsers()
 
 			if (!data) return
@@ -48,8 +33,16 @@ export function UserTable() {
 	}, [])
 
 	return (
-		<TableContainer component={Paper} sx={{minWidth: '450px', maxWidth: '60vw', marginInline: 'auto', mt: 3}}>
-			<Table aria-label='users-table' size='small' >
+		<TableContainer
+			component={Paper}
+			sx={{
+				width: '100%',
+				maxWidth: '60rem',
+				marginInline: 'auto',
+				mt: 3,
+			}}
+		>
+			<Table aria-label='users-table' size='small'>
 				<TableHead>
 					<TableRow>
 						<TableCell>Действия</TableCell>
@@ -57,6 +50,8 @@ export function UserTable() {
 						<TableCell>Почта</TableCell>
 						<TableCell>Имя</TableCell>
 						<TableCell>Фамилия</TableCell>
+						<TableCell>Занятость</TableCell>
+						<TableCell>Соглашение</TableCell>
 					</TableRow>
 				</TableHead>
 
@@ -67,14 +62,20 @@ export function UserTable() {
 									<TableRow key={user.id}>
 										<TableCell>
 											<Stack direction={'row'}>
-												<EditUser />
-												<DeleteUser />
+												<EditUser iconColor='black' user_id={user.id} />
+												{user.id !== '1' ? (
+													<DeleteUser iconColor='#FF7F7F' user_id={user.id} />
+												) : null}
 											</Stack>
 										</TableCell>
 										<TableCell>{user.id}</TableCell>
 										<TableCell>{user.email}</TableCell>
 										<TableCell>{user.name}</TableCell>
 										<TableCell>{user.surName}</TableCell>
+										<TableCell>
+											{user.employment ? user.employment : '-'}
+										</TableCell>
+										<TableCell>{user.userAgreement ? 'Есть' : 'Нет'}</TableCell>
 									</TableRow>
 								)
 						  })
@@ -84,4 +85,3 @@ export function UserTable() {
 		</TableContainer>
 	)
 }
-
