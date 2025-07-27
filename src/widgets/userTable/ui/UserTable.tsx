@@ -13,28 +13,14 @@ import { DeleteUser } from '@/features/deleteUser/ui/DeleteUser'
 import { EditUser } from '@/features/editUser/ui/EditUser'
 import { Stack } from '@mui/material'
 
-//ToDo: сделать форму добавления пользователя (без логики)
-// сделать форму редактирования пользователя (без логики)
-// добавить store пользователей в  entities
-// добавить логику в форму добавления пользователя
-// добавить логику в форму редактирования пользователя
 
+import type { IUsers } from '@/shared/types'
 
-interface IUsers {
-	id: string
-	name: string
-	surName: string
-	fullName: string
-	email: string
-}
 
 export function UserTable() {
 	const [users, setUsers] = React.useState<IUsers[]>([])
 
-	//запрашивать пользователей из  store
-	//получать пользователей из базы данных только в первый раз при монтировании компонента, следовательно и заполнять state полностью в первый раз
-	// след разы будет ререндер от изменения самого стора, когда мы будем редактировать, добавлять или удалять пользователя
-
+	
 	React.useEffect(() => {
 		async function fetchData() {
 			const data = await getUsers()
