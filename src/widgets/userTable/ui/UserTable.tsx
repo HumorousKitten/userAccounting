@@ -14,6 +14,7 @@ import { EditUser } from '@/features/editUser/ui/EditUser'
 import { Stack } from '@mui/material'
 
 import { useUserStore } from '@/entities/user/store/useUserStore'
+import { current } from 'immer'
 
 export function UserTable() {
 	const {users, setUsers} = useUserStore()
@@ -54,8 +55,8 @@ export function UserTable() {
 									<TableRow key={user.id}>
 										<TableCell>
 											<Stack direction={'row'}>
-												<EditUser />
-												<DeleteUser />
+												<EditUser iconColor = 'black'/>
+												<DeleteUser iconColor = '#FF7F7F'/>
 											</Stack>
 										</TableCell>
 										<TableCell>{user.id}</TableCell>

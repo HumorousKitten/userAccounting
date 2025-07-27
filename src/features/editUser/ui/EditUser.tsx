@@ -1,10 +1,14 @@
 import EditIcon from '@mui/icons-material/Edit';
 import { IconButton } from '@mui/material';
 
-export function EditUser() {
+interface IEditUser {
+	iconColor?: string
+}
+
+export function EditUser({iconColor = 'currentColor'}: IEditUser) {
 	return (
 		<IconButton>
-			<EditIcon />
+			<EditIcon sx={{color: iconColor}}/>
 		</IconButton>
 	);
 }
