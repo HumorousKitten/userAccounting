@@ -27,7 +27,6 @@ export function AuthForm() {
 		control,
 		handleSubmit,
 		formState: { errors },
-		setError,
 	} = useForm({
 		defaultValues: {
 			email: '',

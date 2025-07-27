@@ -14,17 +14,16 @@ import { EditUser } from '@/features/editUser/ui/EditUser'
 import { Stack } from '@mui/material'
 
 import { useUserStore } from '@/entities/user/store/useUserStore'
-import { current } from 'immer'
 
 export function UserTable() {
-	const {users, setUsers} = useUserStore()
-	
+	const { users, setUsers } = useUserStore()
+
 	React.useEffect(() => {
 		async function fetchData() {
-			if(users.length) return
+			if (users.length) return
 
 			const data = await getUsers()
-	
+
 			if (!data) return
 
 			setUsers(data.data)
@@ -34,8 +33,16 @@ export function UserTable() {
 	}, [])
 
 	return (
-		<TableContainer component={Paper} sx={{minWidth: '450px', maxWidth: '60vw', marginInline: 'auto', mt: 3}}>
-			<Table aria-label='users-table' size='small' >
+		<TableContainer
+			component={Paper}
+			sx={{
+				width: '100%',
+				maxWidth: '60rem',
+				marginInline: 'auto',
+				mt: 3,
+			}}
+		>
+			<Table aria-label='users-table' size='small'>
 				<TableHead>
 					<TableRow>
 						<TableCell>Действия</TableCell>
@@ -55,15 +62,19 @@ export function UserTable() {
 									<TableRow key={user.id}>
 										<TableCell>
 											<Stack direction={'row'}>
-												<EditUser iconColor = 'black' user_id={user.id}/>
-												{user.id !== '1' ? <DeleteUser iconColor = '#FF7F7F' user_id={user.id}/> : null}
+												<EditUser iconColor='black' user_id={user.id} />
+												{user.id !== '1' ? (
+													<DeleteUser iconColor='#FF7F7F' user_id={user.id} />
+												) : null}
 											</Stack>
 										</TableCell>
 										<TableCell>{user.id}</TableCell>
 										<TableCell>{user.email}</TableCell>
 										<TableCell>{user.name}</TableCell>
 										<TableCell>{user.surName}</TableCell>
-										<TableCell>{user.employment ? user.employment : '-'}</TableCell>
+										<TableCell>
+											{user.employment ? user.employment : '-'}
+										</TableCell>
 										<TableCell>{user.userAgreement ? 'Есть' : 'Нет'}</TableCell>
 									</TableRow>
 								)
@@ -74,4 +85,3 @@ export function UserTable() {
 		</TableContainer>
 	)
 }
-
